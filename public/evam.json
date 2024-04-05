@@ -1,0 +1,13 @@
+{
+  "applicationId": "my-certified-app",
+  "applicationName": "App",
+  "version": "0.0.0",
+  "versionCode": 7,
+  "logo": "logo.png",
+  "apiVersion": {
+    "target": "1",
+    "minimum": "1"
+  },
+  "permissions": [],
+  "settings": []
+}
