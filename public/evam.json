@@ -8,6 +8,6 @@
     "target": "1",
     "minimum": "1"
   },
-  "permissions": [],
+  "permissions": ["DISPLAY_MODE_READ"],
   "settings": []
 }

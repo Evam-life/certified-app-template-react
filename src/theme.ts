@@ -24,7 +24,7 @@ export const theme = {
       body: {
         // Defaults
         bg: "bg.0",
-        fontSize: "body.1",
+        fontSize: "body.2",
         color: "text.primary",
         "::-webkit-scrollbar": {
           display: "none",
@@ -188,7 +188,7 @@ export const theme = {
           background: "transparent",
           borderWidth: "2px",
           borderStyle: "solid",
-          borderColor: "hairline",
+          borderColor: "rgba(255,255,255,0.50)",
         },
       },
       sizes: {
@@ -209,7 +209,7 @@ export const theme = {
     }),
     Heading: defineStyleConfig({
       baseStyle: {
-        fontSize: "display.1",
+        fontSize: "display.3",
       },
     }),
     Tabs: defineTabsMultiStyleConfig({
