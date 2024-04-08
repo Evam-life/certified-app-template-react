@@ -166,7 +166,7 @@ export const theme = {
       baseStyle: {
         width: "100%",
         p: "P2",
-        background: "bg.3",
+        background: "bg.2",
         fontSize: "sub.3",
         whiteSpace: "pre",
         overflow: 'scroll',

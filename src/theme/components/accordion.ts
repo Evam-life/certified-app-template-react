@@ -10,12 +10,12 @@ export const accordionTheme = defineMultiStyleConfig({
       overflowX: "scroll", // For sticky headers
     },
     container: {
-      background: "bg.2",
+      background: "bg.1",
       _notLast: {
         // Dividers
         borderBottomWidth: "2px",
         borderBottomStyle: "solid",
-        borderBottomColor: "bg.2",
+        borderBottomColor: "bg.1",
       },
     },
     button: {
@@ -24,7 +24,7 @@ export const accordionTheme = defineMultiStyleConfig({
       justifyContent: "space-between",
       px: "P2",
       py: "P1",
-      background: "bg.4",
+      background: "bg.3",
 
       // Sticky headers
       position: "sticky",
