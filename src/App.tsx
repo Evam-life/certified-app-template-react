@@ -14,11 +14,13 @@ import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { ApiRounded } from "@mui/icons-material";
 import { HomePage } from "./pages/HomePage.tsx";
 import { SdkPage } from "./pages/SdkPage.tsx";
+import { useState } from "react";
 
 function App() {
+  const [tabIndex, setTabIndex] = useState<number>(1);
   return (
     <>
-      <Tabs height={"100%"} defaultIndex={1}>
+      <Tabs height={"100%"} index={tabIndex} onChange={setTabIndex}>
         <Box>
           <TabList>
             <Tab>
@@ -38,7 +40,7 @@ function App() {
         </Box>
         <TabPanels>
           <TabPanel>
-            <HomePage />
+            <HomePage onClickButton={() => setTabIndex(1)} />
           </TabPanel>
           <TabPanel>
             <SdkPage />
