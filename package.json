@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently --kill-others \"chakra-cli tokens src/theme.ts --watch\" \"vite\"",
+    "dev": "concurrently --kill-others \\\"chakra-cli tokens src/theme/theme.ts --watch\\\" \\\"vite\\\"",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "sideload": "evam-sideload",

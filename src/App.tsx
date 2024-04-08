@@ -15,31 +15,13 @@ import {
   TabPanels,
   Tabs,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { ApiRounded } from "@mui/icons-material";
-import { useEffect } from "react";
-import { EvamApi } from "@evam-life/sdk";
-
-/**
- * Listens to the device display mode and injects it into our app.
- */
-const ChakraDisplayModeSyncer = () => {
-  const { setColorMode } = useColorMode();
-  useEffect(() => {
-    return EvamApi.event.on("newOrUpdatedDisplayMode", (displayMode) => {
-      if (!displayMode) return;
-      setColorMode(displayMode === "DARK" ? "dark" : "light");
-    });
-  }, [setColorMode]);
-  return null;
-};
 
 function App() {
   return (
     <>
-      <ChakraDisplayModeSyncer />
       <Tabs>
         <TabList>
           <Tab>
@@ -59,7 +41,7 @@ function App() {
         <TabPanels>
           <TabPanel>
             <Stack alignItems={"center"} gap={"P4"} pt={"P6"}>
-              <Heading>Welcome!</Heading>
+              <Heading>Welcome</Heading>
               <Text>Welcome to your very own certified app!</Text>
               <Button variant={"outlined"}>Explore SDK</Button>
             </Stack>

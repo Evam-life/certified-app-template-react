@@ -1,16 +1,6 @@
-import { tabsAnatomy } from "@chakra-ui/anatomy";
-import {
-  baseTheme,
-  createMultiStyleConfigHelpers,
-  defineStyleConfig,
-} from "@chakra-ui/react";
-
-createMultiStyleConfigHelpers(tabsAnatomy.keys);
-
-const {
-  definePartsStyle: defineTabsPartStyle,
-  defineMultiStyleConfig: defineTabsMultiStyleConfig,
-} = createMultiStyleConfigHelpers(tabsAnatomy.keys);
+import { baseTheme, defineStyleConfig } from "@chakra-ui/react";
+import { tabsTheme } from "./components/tabs.ts";
+import { buttonTheme } from "./components/button.ts";
 
 // Extend the base Chakra UI theme with our own styles
 export const theme = {
@@ -160,100 +150,12 @@ export const theme = {
     },
   },
   components: {
-    Button: defineStyleConfig({
-      baseStyle: {
-        borderRadius: "9999px",
-        minWidth: "144px",
-        maxWidth: "600px",
-        minHeight: "48px",
-        maxHeight: "96px",
-        fontSize: "24px",
-        fontWeight: 700,
-        padding: "P4",
-        _active: {
-          filter: "brightness(85%)",
-        },
-        _disabled: {
-          pointerEvents: "none",
-        },
-      },
-      variants: {
-        primary: {
-          background: "orange.primary",
-        },
-        secondary: {
-          background: "bg.4",
-        },
-        outlined: {
-          background: "transparent",
-          borderWidth: "2px",
-          borderStyle: "solid",
-          borderColor: "rgba(255,255,255,0.50)",
-        },
-      },
-      sizes: {
-        1: {
-          height: "96px",
-        },
-        2: {
-          height: "76px",
-        },
-        3: {
-          height: "64px",
-        },
-      },
-      defaultProps: {
-        variant: "primary",
-        size: 2,
-      },
-    }),
     Heading: defineStyleConfig({
       baseStyle: {
         fontSize: "display.3",
       },
     }),
-    Tabs: defineTabsMultiStyleConfig({
-      baseStyle: defineTabsPartStyle({
-        root: {},
-        indicator: {
-          height: "3px",
-          bg: "orange.primary",
-          borderRadius: "9999px",
-          marginTop: "-3px",
-        },
-        tablist: {
-          px: "P2",
-        },
-        tabpanel: {},
-        tab: {
-          fontSize: "26px",
-          lineHeight: "29px",
-          py: "P0",
-          px: "P4",
-          color: "text.sub",
-
-          // Minimum touch area
-          minWidth: "144px",
-          minHeight: "48px",
-
-          // Equal size distribution
-          // flexBasis: 0,
-          // flexGrow: 1,
-
-          // Highlight touches
-          _active: {
-            bgColor: `rgba(255, 255, 255, ${0.2})`,
-          },
-
-          _selected: {
-            color: "text.primary",
-          },
-
-          svg: {
-            boxSize: "36px",
-          },
-        },
-      }),
-    }),
+    Button: buttonTheme,
+    Tabs: tabsTheme,
   },
 };
