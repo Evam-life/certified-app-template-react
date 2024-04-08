@@ -101,7 +101,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
+          <Code minBlockSize={64}>
             {JSON.stringify(rakelMessages, undefined, 2) || "undefined"}
           </Code>
         </AccordionPanel>
@@ -178,6 +178,7 @@ export const SdkPage = () => {
   );
 };
 
+// Inject some dummy data if not running on device
 if (!EvamApi.isRunningInVehicleServices) {
   EvamApi["test-utils"].inject("newOrUpdatedOperation", {
     operationID: "211",
