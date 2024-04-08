@@ -23,6 +23,9 @@ export const theme = {
         userSelect: "none",
         fontFamily: "Lato",
       },
+      "#root": {
+        height: "100vh",
+      },
     },
   },
   space: {

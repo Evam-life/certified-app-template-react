@@ -8,7 +8,10 @@ const { definePartsStyle, defineMultiStyleConfig } =
 
 export const tabsTheme = defineMultiStyleConfig({
   baseStyle: definePartsStyle({
-    root: {},
+    root: {
+      display: "flex",
+      flexDirection: "column",
+    },
     indicator: {
       height: "3px",
       bg: "orange.primary",
@@ -18,7 +21,6 @@ export const tabsTheme = defineMultiStyleConfig({
     tablist: {
       px: "P2",
     },
-    tabpanel: {},
     tab: {
       fontSize: "26px",
       lineHeight: "29px",
@@ -46,6 +48,10 @@ export const tabsTheme = defineMultiStyleConfig({
       svg: {
         boxSize: "36px",
       },
+    },
+    tabpanels: {
+      // Sticky tabs
+      overflowX: "scroll",
     },
   }),
 });

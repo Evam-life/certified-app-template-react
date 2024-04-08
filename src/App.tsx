@@ -1,11 +1,5 @@
 import {
-  Accordion,
-  AccordionButton,
-  AccordionItem,
-  AccordionPanel,
-  Button,
-  Code,
-  Heading,
+  Box,
   Icon,
   Stack,
   Tab,
@@ -18,54 +12,36 @@ import {
 } from "@chakra-ui/react";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import { ApiRounded } from "@mui/icons-material";
+import { HomePage } from "./pages/HomePage.tsx";
+import { SdkPage } from "./pages/SdkPage.tsx";
 
 function App() {
   return (
     <>
-      <Tabs>
-        <TabList>
-          <Tab>
-            <Stack alignItems={"center"} gap={"P0"}>
-              <Icon as={HomeRoundedIcon} />
-              <Text as={"span"}>Home</Text>
-            </Stack>
-          </Tab>
-          <Tab>
-            <Stack alignItems={"center"}>
-              <Icon as={ApiRounded} />
-              <Text as={"span"}>SDK</Text>
-            </Stack>
-          </Tab>
-        </TabList>
-        <TabIndicator />
+      <Tabs height={"100%"}>
+        <Box>
+          <TabList>
+            <Tab>
+              <Stack alignItems={"center"} gap={"P0"}>
+                <Icon as={HomeRoundedIcon} />
+                <Text as={"span"}>Home</Text>
+              </Stack>
+            </Tab>
+            <Tab>
+              <Stack alignItems={"center"}>
+                <Icon as={ApiRounded} />
+                <Text as={"span"}>SDK</Text>
+              </Stack>
+            </Tab>
+          </TabList>
+          <TabIndicator />
+        </Box>
         <TabPanels>
           <TabPanel>
-            <Stack alignItems={"center"} gap={"P4"} pt={"P6"}>
-              <Heading>Welcome</Heading>
-              <Text>Welcome to your very own certified app!</Text>
-              <Button variant={"outlined"}>Explore SDK</Button>
-            </Stack>
+            <HomePage />
           </TabPanel>
           <TabPanel>
-            <Accordion defaultIndex={[0]} allowMultiple>
-              <AccordionItem>
-                <Heading>
-                  <AccordionButton>Operation</AccordionButton>
-                </Heading>
-                <AccordionPanel>
-                  <Text>lsdf</Text>
-                  <Code>Lol</Code>
-                </AccordionPanel>
-              </AccordionItem>
-              <AccordionItem>
-                <Heading>
-                  <AccordionButton>Location</AccordionButton>
-                </Heading>
-                <AccordionPanel>
-                  <Code>Lol</Code>
-                </AccordionPanel>
-              </AccordionItem>
-            </Accordion>
+            <SdkPage />
           </TabPanel>
         </TabPanels>
       </Tabs>
