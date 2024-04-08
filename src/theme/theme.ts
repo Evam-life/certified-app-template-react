@@ -1,6 +1,7 @@
 import { baseTheme, defineStyleConfig } from "@chakra-ui/react";
 import { tabsTheme } from "./components/tabs.ts";
 import { buttonTheme } from "./components/button.ts";
+import { accordionTheme } from "./components/accordion.ts";
 
 // Extend the base Chakra UI theme with our own styles
 export const theme = {
@@ -67,8 +68,8 @@ export const theme = {
       600: "#80868B",
       700: "#5F6368",
       800: "#3C4043",
-      846: "#282A2D",
-      868: "#2E3134",
+      846: "#2E3134",
+      868: "#282A2D",
       900: "#202124",
       928: "#17181B",
       958: "#0E1013",
@@ -160,5 +161,16 @@ export const theme = {
     }),
     Button: buttonTheme,
     Tabs: tabsTheme,
+    Accordion: accordionTheme,
+    Code: defineStyleConfig({
+      baseStyle: {
+        width: "100%",
+        p: "P2",
+        background: "bg.3",
+        fontSize: "sub.3",
+        whiteSpace: "pre",
+        overflow: 'scroll',
+      },
+    }),
   },
 };

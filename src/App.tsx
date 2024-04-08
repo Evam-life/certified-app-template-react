@@ -18,7 +18,7 @@ import { SdkPage } from "./pages/SdkPage.tsx";
 function App() {
   return (
     <>
-      <Tabs height={"100%"}>
+      <Tabs height={"100%"} defaultIndex={1}>
         <Box>
           <TabList>
             <Tab>
