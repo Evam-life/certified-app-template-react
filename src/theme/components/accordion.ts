@@ -33,7 +33,7 @@ export const accordionTheme = defineMultiStyleConfig({
     },
     panel: {
       p: "P2",
-      fontSize: "sub.1"
+      fontSize: "sub.1",
     },
     icon: {},
   }),

@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# Evam App Template
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Evam](https://uploads-ssl.webflow.com/617bfe6eee00c8179b464cd6/617bfe6eee00c8209d464cec_evam_full-logo.svg)
 
-Currently, two official plugins are available:
+This is a template providing a starting point for the development
+of your Evam app. It is fully written in Typescript, using [React](https://react.dev/)+[Vite](https://vitejs.dev/).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+The Evam SDK package [`@evam-life/sdk`](https://www.npmjs.com/package/@evam-life/sdk) is included and some APIs are
+used for the sake of example.
 
-## Expanding the ESLint configuration
+See https://www.documentation.evam.life/ for up to date documentation about the Evam SDK.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Getting started
 
-- Configure the top-level `parserOptions` property like this:
+Use `npx @evam-life/sdk create-app` script to kickstart your application project using this template:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-    project: ["./tsconfig.json", "./tsconfig.node.json"],
-    tsconfigRootDir: __dirname,
-  },
-};
+```shell
+npx @evam-life/sdk create-app
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+This will download the template and install all dependencies.
+
+### Development
+
+#### `npm run dev`
+
+Runs the app in the development mode.\
+Open [http://localhost:5137](http://localhost:5137) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+#### `npm run format`
+
+Reformats all code using [Prettier](https://prettier.io/).
+
+#### `npm run lint`
+
+Lints the codebase using [ESLint](https://eslint.org/) and reports any errors.
+
+#### `npm run build`
+
+Builds the app for production to the `build/` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+#### `npm run sideload`
+
+Sideloads your app to all connected Android devices.
