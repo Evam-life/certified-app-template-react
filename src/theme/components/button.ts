@@ -32,7 +32,7 @@ export const buttonTheme = defineStyleConfig({
       background: "transparent",
       borderWidth: "2px",
       borderStyle: "solid",
-      borderColor: "rgba(255,255,255,0.50)",
+      borderColor: "#707070",
     },
   },
   sizes: {

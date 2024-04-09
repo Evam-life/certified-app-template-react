@@ -5,31 +5,14 @@ import {
   AccordionItem,
   AccordionPanel,
   Button,
-  Code,
+  Flex,
   Heading,
   Text,
 } from "@chakra-ui/react";
-import { useEvamData } from "../hooks/useEvamData.ts";
-import { EvamApi } from "@evam-life/sdk";
+import { EvamApi, VehicleServicesUtils } from "@evam-life/sdk";
+import { EvamData } from "../components/EvamData.tsx";
 
 export const SdkPage = () => {
-  const operation = useEvamData("newOrUpdatedOperation");
-  const battery = useEvamData("newOrUpdatedBattery");
-  const displayMode = useEvamData("newOrUpdatedDisplayMode");
-  const internetState = useEvamData("newOrUpdatedInternetState");
-  const location = useEvamData("newOrUpdatedLocation");
-  const operationList = useEvamData("newOrUpdatedOperationList");
-  const rakelMessages = useEvamData("newOrUpdatedRakelMessages");
-  const rakelState = useEvamData("newOrUpdatedRakelState");
-  const settings = useEvamData("newOrUpdatedSettings");
-  const tripLocationHistory = useEvamData("newOrUpdatedTripLocationHistory");
-  const vehicleState = useEvamData("newOrUpdatedVehicleState");
-  const vehicleStatusList = useEvamData(
-    "newOrUpdatedAvailableVehicleStatusList",
-  );
-  const appVersion = useEvamData("appVersionSet");
-  const vehicleServicesVersion = useEvamData("vehicleServicesVersionSet");
-  const osVersion = useEvamData("osVersionSet");
   return (
     <Accordion allowMultiple height={"100%"}>
       <AccordionItem>
@@ -38,9 +21,20 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>{JSON.stringify(operation, undefined, 2) || "undefined"}</Code>
-          <Button size={"3"} variant={"primary"}>
-            test
+          <EvamData event={"newOrUpdatedOperation"} />
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>
+          App Lifecycle
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <Button
+            variant={"secondary"}
+            onClick={() => setTimeout(EvamApi.app.putInForeground, 5000)}
+          >
+            Put app in foreground in 5 seconds
           </Button>
         </AccordionPanel>
       </AccordionItem>
@@ -50,7 +44,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>{JSON.stringify(battery, undefined, 2) || "undefined"}</Code>
+          <EvamData event={"newOrUpdatedBattery"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -59,9 +53,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(displayMode, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedDisplayMode"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -70,9 +62,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(internetState, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedInternetState"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -81,7 +71,59 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>{JSON.stringify(location, undefined, 2) || "undefined"}</Code>
+          <EvamData event={"newOrUpdatedLocation"} />
+        </AccordionPanel>
+      </AccordionItem>
+      <AccordionItem>
+        <AccordionButton>
+          <Text>Notifications</Text>
+          <AccordionIcon />
+        </AccordionButton>
+        <AccordionPanel>
+          <Flex gap={"P2"} flexWrap={"wrap"}>
+            {VehicleServicesUtils.iterators.notificationTypes.map(
+              (notificationType) => (
+                <Button
+                  key={notificationType}
+                  size={"3"}
+                  variant={"secondary"}
+                  onClick={() =>
+                    EvamApi.notification.send({
+                      notificationId: notificationType, // Optional ID can be used to remove sent notifications
+                      heading: "Heading",
+                      description: `Notification from certified app of type ${notificationType}`,
+                      primaryButton: {
+                        label: "Primary",
+                        callback: () => {
+                          alert("Primary button was pressed");
+                        },
+                      },
+                      secondaryButton: {
+                        label: "Secondary",
+                        callback: () => {
+                          alert("Secondary button was pressed");
+                        },
+                      },
+                      notificationType,
+                    })
+                  }
+                >
+                  {notificationType}
+                </Button>
+              ),
+            )}
+            <Button
+              variant={"outlined"}
+              size={"3"}
+              onClick={() => {
+                VehicleServicesUtils.iterators.notificationTypes.forEach(
+                  EvamApi.notification.remove,
+                );
+              }}
+            >
+              Remove Notifications
+            </Button>
+          </Flex>
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -90,29 +132,19 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(operationList, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedOperationList"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
         <AccordionButton>
-          <Text>Rakel Messages</Text>
+          <Text>Rakel Radio</Text>
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code minBlockSize={64}>
-            {JSON.stringify(rakelMessages, undefined, 2) || "undefined"}
-          </Code>
-        </AccordionPanel>
-      </AccordionItem>
-      <AccordionItem>
-        <AccordionButton>
-          <Text>Rakel State</Text>
-          <AccordionIcon />
-        </AccordionButton>
-        <AccordionPanel>
-          <Code>{JSON.stringify(rakelState, undefined, 2) || "undefined"}</Code>
+          <Heading fontSize={"sub.1"}>Messages</Heading>
+          <EvamData event={"newOrUpdatedRakelMessages"} minBlockSize={64} />
+          <Heading fontSize={"sub.1"}>State</Heading>
+          <EvamData event={"newOrUpdatedRakelState"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -121,7 +153,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>{JSON.stringify(settings, undefined, 2) || "undefined"}</Code>
+          <EvamData event={"newOrUpdatedSettings"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -130,9 +162,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(tripLocationHistory, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedTripLocationHistory"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -141,9 +171,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(vehicleState, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedVehicleState"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -152,9 +180,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Code>
-            {JSON.stringify(vehicleStatusList, undefined, 2) || "undefined"}
-          </Code>
+          <EvamData event={"newOrUpdatedAvailableVehicleStatusList"} />
         </AccordionPanel>
       </AccordionItem>
       <AccordionItem>
@@ -163,77 +189,15 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
-          <Heading fontSize={"body.3"}>Certified App</Heading>
-          <Code>{JSON.stringify(appVersion, undefined, 2) || "undefined"}</Code>
-          <Heading fontSize={"body.3"}>Vehicle Services</Heading>
-          <Code>
-            {JSON.stringify(vehicleServicesVersion, undefined, 2) ||
-              "undefined"}
-          </Code>
-          <Heading fontSize={"body.3"}>Operating System</Heading>
-          <Code>{JSON.stringify(osVersion, undefined, 2) || "undefined"}</Code>
+          <Text>Certified App</Text>
+          <EvamData event={"appVersionSet"} />
+          <Text>Vehicle Services</Text>
+          <EvamData event={"vehicleServicesVersionSet"} />
+          <Text>Operating System</Text>
+          <EvamData event={"osVersionSet"} />
         </AccordionPanel>
       </AccordionItem>
     </Accordion>
   );
 };
 
-// Inject some dummy data if not running on device
-if (!EvamApi.isRunningInVehicleServices) {
-  EvamApi["test-utils"].inject("newOrUpdatedOperation", {
-    operationID: "211",
-    operationFullId: "1:1:211",
-    name: "Olycka (Trauma)",
-    sendTime: new Date(1668609413000),
-    createdTime: new Date(1668608668000),
-    acceptedTime: new Date(1712585596000),
-    callCenterId: "16",
-    caseFolderId: "128",
-    medicalIncidentOfficer: "Sjukvärdsledare",
-    radioGroupSecondary: "230 RtjIns-1, 240-1-9030012",
-    availablePriorities: [
-      { id: 1, name: "PRIO 1" },
-      { id: 2, name: "PRIO 2" },
-      { id: 3, name: "PRIO 3" },
-    ],
-    patientName: "Sven Svensson",
-    patientUID: "19921224-1234",
-    vehicleStatus: {
-      name: "Disponibel",
-      isStartStatus: false,
-      isEndStatus: false,
-      categoryType: "STATUS_MISSION",
-      categoryName: "mission",
-      successorName: "Klar uppdrag",
-      event: "EVENT_EXIT_SITE",
-    },
-    destinationSiteLocation: {
-      latitude: 59.248083333333334,
-      longitude: 18.240066666666667,
-      street: "Siklöjevägen 27",
-      locality: "Bollmora",
-      municipality: "Tyresö",
-      routeDirections: "Fast mobil",
-      pickupTime: "2022-11-16 14:24:28.898",
-    },
-    availableHospitalLocations: [
-      { id: 0, latitude: 59.36339, longitude: 17.967539, name: "My hospital" },
-      { id: 1, latitude: 59.353016, longitude: 17.970813, name: "Karolinska" },
-    ],
-    header1: "Högenergivåld och/eller multipla skador",
-    eventInfo: "Något har gått snett",
-    caseInfo: "I rackethallen\u0014\n",
-    selectedPriority: 1,
-    operationState: "ACTIVE",
-    leavePatientLocation: {
-      latitude: 59.31013333333333,
-      longitude: 18.055366666666668,
-      street: "Sjukhusbacken 12 'Södersjukhuset-Akutmottagning'",
-      locality: "Tyresö",
-      municipality: "Stockholm",
-      leaveTime: "2022-11-16 17:00:00.000",
-    },
-    assignedResourceMissionNo: "TetraR3E4",
-    operationUnits: [{ unitId: "TetraR3", source: "RAKEL" }],
-  });
-}

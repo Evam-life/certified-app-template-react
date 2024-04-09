@@ -19,12 +19,16 @@ export const ChakraDisplayModeSyncer = () => {
 
 if (!EvamApi.isRunningInVehicleServices) {
   // Inject Display mode from browser if not running on device
-  window
-    .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (event) => {
-      EvamApi["test-utils"].inject(
-        "newOrUpdatedDisplayMode",
-        event.matches ? "DARK" : "LIGHT",
-      );
-    });
+  const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+
+  EvamApi["test-utils"].inject(
+    "newOrUpdatedDisplayMode",
+    mediaQuery.matches ? "DARK" : "LIGHT",
+  );
+  mediaQuery.addEventListener("change", (event) => {
+    EvamApi["test-utils"].inject(
+      "newOrUpdatedDisplayMode",
+      event.matches ? "DARK" : "LIGHT",
+    );
+  });
 }
