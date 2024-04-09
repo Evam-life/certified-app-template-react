@@ -1,8 +1,4 @@
-import {
-  EvamApi,
-  VehicleServicesEvent,
-  VehicleServicesEventPayload,
-} from "@evam-life/sdk";
+import { EvamApi, VehicleServicesEvent, VehicleServicesEventPayload } from "@evam-life/sdk";
 import { useEffect, useState } from "react";
 
 /**

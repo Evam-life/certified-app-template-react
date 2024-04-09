@@ -28,5 +28,15 @@
     "RAKEL_RAW_COMMAND_SEND",
     "PUT_APP_IN_FOREGROUND"
   ],
-  "settings": []
+  "settings": [
+    {
+      "id": "debug",
+      "name": "Debug mode",
+      "description": "Debug mode logs all SDK events to the console",
+      "value": {
+        "type": "bool",
+        "default": true
+      }
+    }
+  ]
 }
