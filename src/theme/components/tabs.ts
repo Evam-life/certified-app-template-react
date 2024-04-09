@@ -50,6 +50,8 @@ export const tabsTheme = defineMultiStyleConfig({
     tabpanels: {
       // Sticky tabs
       overflowX: "scroll",
+      height: "100%",
+      flex: 1,
     },
     tabpanel: {
       height: "100%",

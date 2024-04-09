@@ -3,7 +3,7 @@ import { EvamApi } from "@evam-life/sdk";
 
 export const HomePage = ({ onClickButton }: { onClickButton: () => void }) => {
   return (
-    <Stack alignItems={"center"} gap={"P4"} pt={"P6"}>
+    <Stack height={"100%"} alignItems={"center"} gap={"P4"} pt={"P6"}>
       <Heading>Welcome</Heading>
       <Text>This is your very own certified app!</Text>
       <Button variant={"primary"} onClick={onClickButton}>
