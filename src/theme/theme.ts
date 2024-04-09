@@ -11,16 +11,17 @@ export const theme = {
       "*": {
         // Don't highlight taps
         WebkitTapHighlightColor: "transparent",
+        // Hide scrollbars
+        "::-webkit-scrollbar": {
+          display: "none",
+          width: "0px",
+        },
       },
       body: {
         // Defaults
         bg: "bg.0",
         fontSize: "body.2",
         color: "text.primary",
-        "::-webkit-scrollbar": {
-          display: "none",
-          width: "0px",
-        },
         userSelect: "none",
         fontFamily: "Lato",
       },
@@ -169,7 +170,8 @@ export const theme = {
         background: "bg.2",
         fontSize: "sub.3",
         whiteSpace: "pre",
-        overflow: 'scroll',
+        overflow: "scroll",
+        userSelect: "text",
       },
     }),
   },
