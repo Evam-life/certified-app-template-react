@@ -325,7 +325,7 @@ export const SdkPage = () => {
             </Stack>
             <Stack>
               <Heading fontSize={"sub.1"}>State</Heading>
-              <EvamData event={"newOrUpdatedRakelState"} />
+              <EvamData event={"newOrUpdateRakelState"} />
             </Stack>
             <Flex alignItems={"center"} gap={"P2"}>
               <Text>Send Action</Text>

@@ -304,4 +304,7 @@ if (!EvamApi.isRunningInVehicleServices) {
       categoryName: "Talbegäran",
     },
   ]);
+  EvamApi["test-utils"].inject("newOrUpdateRakelState", {
+    isHealthy: false,
+  });
 }
