@@ -14,21 +14,27 @@ import {
 import { EvamApi, VehicleServicesUtils } from "@evam-life/sdk";
 import { EvamData } from "../components/EvamData.tsx";
 import { useEvamData } from "../hooks/useEvamData.ts";
-import { Warning } from "@mui/icons-material";
+import { WarningRounded } from "@mui/icons-material";
 
 const SdkBrowserWarning = () => {
   return !EvamApi.isRunningInVehicleServices ? (
     <Flex
       p={"P3"}
       alignItems={"center"}
-      gap={"P1"}
+      gap={"P2"}
       background={"rgba(251, 211, 141, 0.16)"}
       borderRadius={"10px"}
       mb={"P2"}
     >
-      <Warning />
+      <WarningRounded
+        fontSize={"large"}
+        sx={{
+          color: "#FBD38D",
+        }}
+      />
       <Text>
-        Since this app is not currently running on a device, the below SDK actions will not work.
+        Since this app is not currently running on a device, the below SDK
+        actions will not work.
       </Text>
     </Flex>
   ) : null;
