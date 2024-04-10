@@ -4,6 +4,7 @@ import {
   AccordionIcon,
   AccordionItem,
   AccordionPanel,
+  Box,
   Button,
   Flex,
   Heading,
@@ -13,6 +14,25 @@ import {
 import { EvamApi, VehicleServicesUtils } from "@evam-life/sdk";
 import { EvamData } from "../components/EvamData.tsx";
 import { useEvamData } from "../hooks/useEvamData.ts";
+import { Warning } from "@mui/icons-material";
+
+const SdkBrowserWarning = () => {
+  return !EvamApi.isRunningInVehicleServices ? (
+    <Flex
+      p={"P3"}
+      alignItems={"center"}
+      gap={"P1"}
+      background={"rgba(251, 211, 141, 0.16)"}
+      borderRadius={"10px"}
+      mb={"P2"}
+    >
+      <Warning />
+      <Text>
+        Since this app is not currently running on a device, the below SDK actions will not work.
+      </Text>
+    </Flex>
+  ) : null;
+};
 
 export const SdkPage = () => {
   const operation = useEvamData("newOrUpdatedOperation");
@@ -28,6 +48,10 @@ export const SdkPage = () => {
         <AccordionPanel>
           <Stack gap={"P2"}>
             <EvamData event={"newOrUpdatedOperation"} />
+            {!!(
+              operation?.availablePriorities ||
+              operation?.availableHospitalLocations
+            ) && <SdkBrowserWarning />}
             {!!operation?.availablePriorities && (
               <Flex alignItems={"center"} flexWrap={"wrap"} gap={"P2"}>
                 <Text>Set Priority</Text>
@@ -67,6 +91,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
+          <SdkBrowserWarning />
           <Button
             variant={"secondary"}
             onClick={() => setTimeout(EvamApi.app.putInForeground, 5000)}
@@ -117,6 +142,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
+          <SdkBrowserWarning />
           <Stack gap={"P2"}>
             <Stack>
               <Text>Add Points Layer</Text>
@@ -257,6 +283,7 @@ export const SdkPage = () => {
           <AccordionIcon />
         </AccordionButton>
         <AccordionPanel>
+          <SdkBrowserWarning />
           <Flex gap={"P2"} flexWrap={"wrap"}>
             {VehicleServicesUtils.iterators.notificationTypes.map(
               (notificationType) => (
@@ -327,16 +354,20 @@ export const SdkPage = () => {
               <Heading fontSize={"sub.1"}>State</Heading>
               <EvamData event={"newOrUpdateRakelState"} />
             </Stack>
-            <Flex alignItems={"center"} gap={"P2"}>
-              <Text>Send Action</Text>
-              <Button
-                variant={"secondary"}
-                size={"3"}
-                onClick={() => EvamApi.rakel.sendRawRakelAction(["AT+GMI\r"])}
-              >
-                AT+GMI
-              </Button>
-            </Flex>
+            <Box>
+              <SdkBrowserWarning />
+
+              <Flex alignItems={"center"} gap={"P2"}>
+                <Text>Send Action</Text>
+                <Button
+                  variant={"secondary"}
+                  size={"3"}
+                  onClick={() => EvamApi.rakel.sendRawRakelAction(["AT+GMI\r"])}
+                >
+                  AT+GMI
+                </Button>
+              </Flex>
+            </Box>
           </Stack>
         </AccordionPanel>
       </AccordionItem>
