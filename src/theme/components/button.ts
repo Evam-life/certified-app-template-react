@@ -38,9 +38,11 @@ export const buttonTheme = defineStyleConfig({
   sizes: {
     1: {
       height: "96px",
+      px: "P6",
     },
     2: {
       height: "76px",
+      px: "P5",
     },
     3: {
       height: "64px",

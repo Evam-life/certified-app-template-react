@@ -2,7 +2,6 @@ import { defineStyleConfig, extendTheme } from "@chakra-ui/react";
 import { tabsTheme } from "./components/tabs.ts";
 import { buttonTheme } from "./components/button.ts";
 import { accordionTheme } from "./components/accordion.ts";
-import { alertTheme } from "./components/alert.ts";
 
 // Extend the base Chakra UI theme with our own styles
 export const theme = extendTheme((theme) => ({

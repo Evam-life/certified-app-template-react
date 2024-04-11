@@ -6,7 +6,7 @@ export const HomePage = ({ onClickButton }: { onClickButton: () => void }) => {
     <Stack height={"100%"} alignItems={"center"} gap={"P4"} pt={"P6"}>
       <Heading>Welcome</Heading>
       <Text>This is your very own certified app!</Text>
-      <Button variant={"primary"} onClick={onClickButton}>
+      <Button variant={"primary"} onClick={onClickButton} size={"1"}>
         Explore SDK
       </Button>
       {!EvamApi.isRunningInVehicleServices && (
