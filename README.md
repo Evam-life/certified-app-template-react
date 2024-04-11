@@ -1,4 +1,4 @@
-# Evam App Template
+# Evam Certified App Template
 
 ![Evam](https://uploads-ssl.webflow.com/617bfe6eee00c8179b464cd6/617bfe6eee00c8209d464cec_evam_full-logo.svg)
 
@@ -12,10 +12,10 @@ See https://www.documentation.evam.life/ for up to date documentation about the 
 
 ## Getting started
 
-Use `npx @evam-life/sdk create-app` script to kickstart your application project using this template:
+Use `npx` to kickstart your application project using this template:
 
 ```shell
-npx @evam-life/sdk create-app
+npx -p @evam-life/sdk create-certified-app <project name>
 ```
 
 This will download the template and install all dependencies.
